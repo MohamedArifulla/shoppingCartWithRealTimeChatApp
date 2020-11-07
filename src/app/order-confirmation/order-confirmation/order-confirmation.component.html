@@ -1,0 +1,16 @@
+<div style="display:flex; justify-content:space-between">
+        <h2>ABC Mart</h2>
+        <button style="float:right;margin-right:20px;" mat-raised-button color="accent" (click)="onReviewClick()">Review</button>    
+</div>
+<h4>Your order placed successfully!</h4>
+<h4><b>Order Summary</b></h4>
+<span><b>Customer Name:</b> {{customerName}}</span><br>
+<span><b>Customer Mobile:</b> {{customerMobile}}</span><br>
+<div><b>Items:</b><br>
+    <div class="box">
+    <ul>
+        <li *ngFor="let order of orderArray">{{order}}</li>
+    </ul>
+    </div>
+</div><br>
+<span><b>Expected Date of Arrival:</b> {{expectedDate}}</span>

@@ -1,0 +1,38 @@
+<div style="display:flex; justify-content:space-between">
+<h2>Welcome to ABC Mart!</h2>
+<button style="float:right;margin-right:20px;" mat-raised-button color="accent" (click)="onReviewClick()">Review</button>    
+</div>
+<form #cardForm="ngForm">
+  <div class="form-group">
+      <label for="customer">Customer Name</label><span style="color:red">*</span>
+      <input required ngModel type="text" name="customer" #customer="ngModel" [(ngModel)]="customerName" id="customer" class="form-control">
+      <div class="alert alert-danger" *ngIf="!customer.valid && customer.touched">customer Name is required</div>
+  </div>
+  <div class="form-group">
+      <label for="contactNumber">Contact Number</label><span style="color:red">*</span>
+      <input type="tel" required ngModel maxlength="10" name="contactNumber" id="contactNumber" [(ngModel)]="customerMobile" #contactNumber="ngModel" class="form-control">
+      <div class="alert alert-danger" *ngIf="!contactNumber.valid && contactNumber.touched">Contact number is required</div>
+  </div>
+<div class="form-group">
+  <mat-form-field appearance="fill">
+    <mat-label>Items to be ordered</mat-label>
+    <mat-select [(ngModel)]="selectedValue" name="food">
+      <mat-option *ngFor="let food of foods" [value]="food.value">
+        {{food.value}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button style="margin-left: 10px;" mat-raised-button color="primary" (click)="onAddOrder()">Add</button>    
+</div>
+<div class="box">
+  <ul>
+    <li *ngFor="let order of orderArray">{{order}}</li>
+  </ul>
+</div>
+  <div class="form-group">
+      <label for="expectedDeliveryDate">Expected Delivery Date</label><span style="color:red">*</span>
+      <input type="date" [(ngModel)]="expectedDate" required ngModel name="expectedDeliveryDate" id="expectedDeliveryDate" #expectedDeliveryDate="ngModel" class="form-control">
+      <div class="alert alert-danger" *ngIf="!expectedDeliveryDate.valid && expectedDeliveryDate.touched">Expected Date is required</div>
+  </div>
+   <button mat-raised-button color="primary" (click)="onSubmit(cardForm)">Place Order</button>    
+</form>
